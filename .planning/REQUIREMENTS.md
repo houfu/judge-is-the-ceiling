@@ -91,39 +91,39 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DATA-01 | Pending | Pending |
-| DATA-02 | Pending | Pending |
-| DATA-03 | Pending | Pending |
-| DATA-04 | Pending | Pending |
-| DATA-05 | Pending | Pending |
-| MODL-01 | Pending | Pending |
-| MODL-02 | Pending | Pending |
-| CONF-01 | Pending | Pending |
-| CONF-02 | Pending | Pending |
-| AGNT-01 | Pending | Pending |
-| AGNT-02 | Pending | Pending |
-| JUDG-01 | Pending | Pending |
-| JUDG-02 | Pending | Pending |
-| JUDG-03 | Pending | Pending |
-| JUDG-04 | Pending | Pending |
-| JUDG-05 | Pending | Pending |
-| TEST-01 | Pending | Pending |
-| TEST-02 | Pending | Pending |
-| OPTM-01 | Pending | Pending |
-| OPTM-02 | Pending | Pending |
-| OPTM-03 | Pending | Pending |
-| LOOP-01 | Pending | Pending |
-| LOOP-02 | Pending | Pending |
-| LOOP-03 | Pending | Pending |
-| LOOP-04 | Pending | Pending |
-| SETP-01 | Pending | Pending |
-| SETP-02 | Pending | Pending |
+| DATA-01 | Phase 1 | Pending |
+| DATA-02 | Phase 1 | Pending |
+| DATA-03 | Phase 1 | Pending |
+| DATA-04 | Phase 1 | Pending |
+| DATA-05 | Phase 1 | Pending |
+| MODL-01 | Phase 1 | Pending |
+| MODL-02 | Phase 1 | Pending |
+| CONF-01 | Phase 1 | Pending |
+| CONF-02 | Phase 1 | Pending |
+| SETP-01 | Phase 1 | Pending |
+| SETP-02 | Phase 1 | Pending |
+| AGNT-01 | Phase 2 | Pending |
+| AGNT-02 | Phase 2 | Pending |
+| JUDG-01 | Phase 2 | Pending |
+| JUDG-02 | Phase 2 | Pending |
+| JUDG-03 | Phase 2 | Pending |
+| JUDG-04 | Phase 2 | Pending |
+| JUDG-05 | Phase 2 | Pending |
+| TEST-01 | Phase 3 | Pending |
+| TEST-02 | Phase 3 | Pending |
+| OPTM-01 | Phase 4 | Pending |
+| OPTM-02 | Phase 4 | Pending |
+| OPTM-03 | Phase 4 | Pending |
+| LOOP-01 | Phase 5 | Pending |
+| LOOP-02 | Phase 5 | Pending |
+| LOOP-03 | Phase 5 | Pending |
+| LOOP-04 | Phase 5 | Pending |
 
 **Coverage:**
 - v1 requirements: 27 total
-- Mapped to phases: 0
-- Unmapped: 27
+- Mapped to phases: 27
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-11*
-*Last updated: 2026-04-11 after initial definition*
+*Last updated: 2026-04-11 after roadmap creation*
