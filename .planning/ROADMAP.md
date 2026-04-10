@@ -30,7 +30,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Config constants (model, base_url, temperature, iteration count) are readable from environment variables with documented defaults
   4. data/nda.md, data/rubric.json, data/playbook.md, data/output_a.md, and data/output_b.md all exist with correct structure (rubric has 8 items, NDA has numbered clauses, playbook covers all 4 issues)
   5. results/ directory is listed in .gitignore
-**Plans**: TBD
+**Plans**: 3 plans
+Plans:
+- [ ] 01-01-PLAN.md — Project skeleton (uv, dependencies, gitignore) + Config dataclass + Pydantic models
+- [ ] 01-02-PLAN.md — Synthetic NDA, rubric JSON, and judge playbook
+- [ ] 01-03-PLAN.md — Output A (model review) and Output B (flawed review)
 
 ### Phase 2: Agent and Judge
 **Goal**: The agent can review an NDA and the judge can score any review with structured, validated output
@@ -85,7 +89,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/TBD | Not started | - |
+| 1. Foundation | 0/3 | Planning complete | - |
 | 2. Agent and Judge | 0/TBD | Not started | - |
 | 3. Pre-Loop Validation Gate | 0/TBD | Not started | - |
 | 4. Optimiser | 0/TBD | Not started | - |
