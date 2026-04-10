@@ -1,0 +1,17 @@
+[project]
+name = "judge-is-the-ceiling"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "openai>=2.0",
+    "pydantic>=2.0",
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.uv]
+dev-dependencies = [
+    "black>=26.0",
+]
