@@ -32,7 +32,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   5. results/ directory is listed in .gitignore
 **Plans**: 3 plans
 Plans:
-- [ ] 01-01-PLAN.md — Project skeleton (uv, dependencies, gitignore) + Config dataclass + Pydantic models
+- [x] 01-01-PLAN.md — Project skeleton (uv, dependencies, gitignore) + Config dataclass + Pydantic models
 - [ ] 01-02-PLAN.md — Synthetic NDA, rubric JSON, and judge playbook
 - [ ] 01-03-PLAN.md — Output A (model review) and Output B (flawed review)
 
