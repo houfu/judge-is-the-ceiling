@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-03-PLAN.md
-last_updated: "2026-04-11T07:09:33.330Z"
+stopped_at: Completed 02-04-PLAN.md — Phase 2 all plans complete, awaiting phase verification
+last_updated: "2026-04-11T07:40:00.000Z"
 last_activity: 2026-04-11
 progress:
   total_phases: 5
   completed_phases: 1
   total_plans: 7
-  completed_plans: 6
-  percent: 86
+  completed_plans: 7
+  percent: 100
 ---
 
 # Project State
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-04-11)
 
 ## Current Position
 
-Phase: 2 (Agent and Judge) — EXECUTING
-Plan: 4 of 4
-Status: Ready to execute
+Phase: 2 (Agent and Judge) — ALL PLANS COMPLETE, awaiting phase verification
+Plan: 4 of 4 — COMPLETE
+Status: Phase 2 execution finished
 Last activity: 2026-04-11
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -55,6 +55,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-agent-and-judge P01 | 162 | 3 tasks | 10 files |
 | Phase 02-agent-and-judge P02 | 95 | 2 tasks | 2 files |
 | Phase 02-agent-and-judge P03 | 4 | 3 tasks | 4 files |
+| Phase 02-agent-and-judge P04 | 180 | 2 tasks | 1 file |
 
 ## Accumulated Context
 
@@ -74,18 +75,20 @@ Recent decisions affecting current work:
 - [Phase 02-agent-and-judge]: _extract_json uses single outermost-brace DOTALL regex (re.DOTALL) — handles json fences, prose preambles, and nested objects in one pass instead of separate fence-stripping step (P14)
 - [Phase 02-agent-and-judge]: Judge retry loop uses single 'except ValidationError' — Pydantic v2 model_validate_json raises this for both JSON-decode and schema failures (P12), no JSONDecodeError catch needed
 - [Phase 02-agent-and-judge]: FakeChatCompletions.create deep-copies kwargs at capture so multi-call retry tests can inspect per-call messages history without aliasing the caller's mutable list (Rule 1 deviation)
+- [Phase 02-agent-and-judge P04]: Live Ollama integration verified end-to-end against gemma4:26b — run_agent + run_judge round-trip returned 8/8 rubric scores with specific, NDA-citing reasoning strings (126s pytest run)
+- [Phase 02-agent-and-judge P04]: MODEL=gemma4:26b confirmed as the working local override; .env file created (gitignored) documenting MODEL/BASE_URL/API_KEY/NUM_CTX for developers — src/config.py default qwen2.5:32b left unchanged pending a user decision on canonical experiment model
 
 ### Pending Todos
 
-None yet.
+- User decision required before Phase 3: confirm canonical experiment model (default qwen2.5:32b, or change to gemma4:26b?) — Phase 3's pre-loop go/no-go gate should run against whichever model Phase 5's main loop will use
 
 ### Blockers/Concerns
 
 - Phase 3 requires a researcher decision before running: confirm the minimum acceptable score gap threshold (suggested >=2.0 points) and document rationale
-- Default MODEL qwen2.5:32b not pulled on host; Plans 02-02/03/04 will 404 on live calls unless MODEL env var is overridden or model is pulled
+- Default MODEL qwen2.5:32b not pulled on host — worked around via MODEL=gemma4:26b shell env for all Phase 2 live tests; same override needed for Phase 3/5 live runs until the project default is reconciled with what's installed
 
 ## Session Continuity
 
-Last session: 2026-04-11T07:09:33.328Z
-Stopped at: Completed 02-03-PLAN.md
-Resume file: None
+Last session: 2026-04-11T07:40:00.000Z
+Stopped at: Phase 2 fully executed — awaiting phase verification + code review + goal check
+Resume file: .planning/phases/02-agent-and-judge/02-04-SUMMARY.md

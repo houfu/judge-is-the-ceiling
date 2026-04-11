@@ -13,7 +13,7 @@ The build follows hard dependency order dictated by the experiment architecture:
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Project setup, Pydantic schemas, config, and all static data files (completed 2026-04-11)
-- [ ] **Phase 2: Agent and Judge** - Working run_agent() and run_judge() with retry loop, verified against schemas
+- [x] **Phase 2: Agent and Judge** - Working run_agent() and run_judge() with retry loop, verified against schemas (completed 2026-04-11)
 - [ ] **Phase 3: Pre-Loop Validation Gate** - Judge calibration test producing a go/no-go decision before proceeding
 - [ ] **Phase 4: Optimiser** - Working run_optimiser() with feedback pass-through and prompt length enforcement
 - [ ] **Phase 5: Main Loop** - Complete experiment run producing structured JSON results
@@ -51,7 +51,7 @@ Plans:
 - [x] 02-01-PLAN.md — Wave 0 preflight: pytest install, num_ctx on Config, src/llm.py get_client factory, live A1 smoke, tests/ package with FakeClient fixture and Wave 1 stubs
 - [x] 02-02-PLAN.md — src/agent.py with run_agent and ITERATION_ZERO_SYSTEM_PROMPT (AGNT-01, AGNT-02) with TDD unit tests
 - [x] 02-03-PLAN.md — src/judge.py with run_judge retry loop, _extract_json, graceful failure (JUDG-01..05) with TDD unit tests
-- [ ] 02-04-PLAN.md — Live Ollama integration smoke tests for agent + judge round-trips, with human verification of judge reasoning quality
+- [x] 02-04-PLAN.md — Live Ollama integration smoke tests for agent + judge round-trips, with human verification of judge reasoning quality
 
 ### Phase 3: Pre-Loop Validation Gate
 **Goal**: The judge demonstrably distinguishes the good review from the flawed review, confirming the experiment is worth running
@@ -95,7 +95,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete    | 2026-04-11 |
-| 2. Agent and Judge | 0/4 | Not started | - |
+| 2. Agent and Judge | 4/4 | Complete   | 2026-04-11 |
 | 3. Pre-Loop Validation Gate | 0/TBD | Not started | - |
 | 4. Optimiser | 0/TBD | Not started | - |
 | 5. Main Loop | 0/TBD | Not started | - |
