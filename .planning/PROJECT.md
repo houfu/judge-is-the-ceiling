@@ -12,20 +12,19 @@ Produce a clean experiment run that demonstrates whether the optimisation loop c
 
 ### Validated
 
-(None yet — ship to validate)
+- ✓ Synthetic NDA with 4 embedded issues (2 extraction, 2 judgment) — Phase 1
+- ✓ 8-item rubric with extraction/judgment pairs per issue — Phase 1
+- ✓ Playbook with precise extraction guidance and deliberately vague judgment guidance — Phase 1
+- ✓ Configurable model, base URL, temperature, iteration count — Phase 1
 
 ### Active
 
-- [ ] Synthetic NDA with 4 embedded issues (2 extraction, 2 judgment)
-- [ ] 8-item rubric with extraction/judgment pairs per issue
-- [ ] Playbook with precise extraction guidance and deliberately vague judgment guidance
 - [ ] Agent component: system prompt + NDA -> structured review via OpenAI-compatible API
 - [ ] Judge component: NDA + agent output + rubric + playbook -> scored JSON with Pydantic validation and retry
 - [ ] Optimiser component: current prompt + judge feedback (no NDA) -> rewritten system prompt
 - [ ] Main loop tying agent -> judge -> log -> optimiser for N iterations
 - [ ] Pre-loop judge test running two pre-written reviews (good + flawed) through the judge
 - [ ] All results written as structured JSON to results/ directory
-- [ ] Configurable model, base URL, temperature, iteration count
 
 ### Out of Scope
 
@@ -80,4 +79,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-11 after initialization*
+*Last updated: 2026-04-11 after Phase 1 completion*
