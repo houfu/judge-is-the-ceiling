@@ -12,7 +12,7 @@ The build follows hard dependency order dictated by the experiment architecture:
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Project setup, Pydantic schemas, config, and all static data files
+- [x] **Phase 1: Foundation** - Project setup, Pydantic schemas, config, and all static data files (completed 2026-04-11)
 - [ ] **Phase 2: Agent and Judge** - Working run_agent() and run_judge() with retry loop, verified against schemas
 - [ ] **Phase 3: Pre-Loop Validation Gate** - Judge calibration test producing a go/no-go decision before proceeding
 - [ ] **Phase 4: Optimiser** - Working run_optimiser() with feedback pass-through and prompt length enforcement
@@ -89,7 +89,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/3 | Planning complete | - |
+| 1. Foundation | 3/3 | Complete    | 2026-04-11 |
 | 2. Agent and Judge | 0/TBD | Not started | - |
 | 3. Pre-Loop Validation Gate | 0/TBD | Not started | - |
 | 4. Optimiser | 0/TBD | Not started | - |
