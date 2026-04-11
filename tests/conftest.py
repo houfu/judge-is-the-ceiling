@@ -7,6 +7,23 @@ from types import SimpleNamespace
 import pytest
 
 
+@pytest.fixture(autouse=True)
+def _reset_llm_singleton(monkeypatch):
+    """Reset src.llm._client to None before every test (M-01).
+
+    Without this, test_get_client_returns_singleton leaks a real OpenAI
+    instance into src.llm._client for the rest of the pytest session.
+    monkeypatch.setattr inside the fake_client fixture then restores to
+    *whatever was present when the fixture ran* — which would be the
+    leaked real client, not None. This autouse fixture makes the
+    restore target deterministically None, matching the documented
+    pre-test module state.
+    """
+    import src.llm
+
+    monkeypatch.setattr(src.llm, "_client", None)
+
+
 class _FakeChatCompletions:
     """Captures kwargs from every chat.completions.create call and pops
     a canned string from `responses` to build a minimal OpenAI-compatible
