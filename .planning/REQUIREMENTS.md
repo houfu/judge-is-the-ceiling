@@ -43,9 +43,9 @@
 
 ### Optimiser
 
-- [ ] **OPTM-01**: Optimiser takes current system prompt + judge feedback only (not the NDA), returns rewritten prompt
-- [ ] **OPTM-02**: Optimiser feedback pass-through logging — store what feedback was received
-- [ ] **OPTM-03**: Prompt diff between iterations stored in results
+- [x] **OPTM-01**: Optimiser takes current system prompt + judge feedback only (not the NDA), returns rewritten prompt
+- [x] **OPTM-02**: Optimiser feedback pass-through logging — store what feedback was received
+- [x] **OPTM-03**: Prompt diff between iterations stored in results
 
 ### Loop
 
@@ -111,9 +111,9 @@
 | JUDG-05 | Phase 2 | Complete |
 | TEST-01 | Phase 3 | Complete |
 | TEST-02 | Phase 3 | Complete |
-| OPTM-01 | Phase 4 | Pending |
-| OPTM-02 | Phase 4 | Pending |
-| OPTM-03 | Phase 4 | Pending |
+| OPTM-01 | Phase 4 | Complete |
+| OPTM-02 | Phase 4 | Complete |
+| OPTM-03 | Phase 4 | Complete |
 | LOOP-01 | Phase 5 | Pending |
 | LOOP-02 | Phase 5 | Pending |
 | LOOP-03 | Phase 5 | Pending |

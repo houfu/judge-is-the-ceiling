@@ -75,7 +75,9 @@ Plans:
   2. The optimiser meta-prompt enforces a hard word-count limit and the returned prompt demonstrably stays within that limit
   3. The feedback strings that were passed to the optimiser are stored alongside the new prompt (pass-through logging)
   4. A prompt diff between the input and output system prompt is captured and stored
-**Plans**: TBD
+**Plans**: 1 plan
+Plans:
+- [x] 04-01-PLAN.md — src/models.py schema extension (BANNED_RUBRIC_VOCAB_TOKENS, OptimiserResult, IterationResult +3 fields) + src/optimiser.py library (run_optimiser, retry loop, P8 scrub, diff capture) + tests/test_optimiser.py (12 FakeClient unit tests) + tests/test_agent.py refactor to import shared constant
 
 ### Phase 5: Main Loop
 **Goal**: A complete experiment run executes N iterations of agent -> judge -> log -> optimiser and writes a single structured JSON artifact
@@ -99,5 +101,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Foundation | 3/3 | Complete    | 2026-04-11 |
 | 2. Agent and Judge | 4/4 | Complete   | 2026-04-11 |
 | 3. Pre-Loop Validation Gate | 0/TBD | Not started | - |
-| 4. Optimiser | 0/TBD | Not started | - |
+| 4. Optimiser | 0/1 | Planned | - |
 | 5. Main Loop | 0/TBD | Not started | - |

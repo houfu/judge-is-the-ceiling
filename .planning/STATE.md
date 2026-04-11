@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: verifying
-stopped_at: Phase 4 context gathered
-last_updated: "2026-04-11T16:09:30.003Z"
+stopped_at: Completed 04-01-PLAN.md
+last_updated: "2026-04-11T16:53:36.097Z"
 last_activity: 2026-04-11
 progress:
   total_phases: 5
-  completed_phases: 3
-  total_plans: 8
-  completed_plans: 8
+  completed_phases: 4
+  total_plans: 9
+  completed_plans: 9
   percent: 100
 ---
 
@@ -21,11 +21,11 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-11)
 
 **Core value:** Produce a clean experiment run demonstrating whether the optimisation loop converges on extraction scores while plateauing on judgment scores
-**Current focus:** Phase 3 — Pre-Loop Validation Gate
+**Current focus:** Phase 4 — Optimiser
 
 ## Current Position
 
-Phase: 3 (Pre-Loop Validation Gate) — EXECUTING
+Phase: 4 (Optimiser) — EXECUTING
 Plan: 1 of 1
 Status: Phase complete — ready for verification
 Last activity: 2026-04-11
@@ -57,6 +57,7 @@ Progress: [██████████] 100%
 | Phase 02-agent-and-judge P03 | 4 | 3 tasks | 4 files |
 | Phase 02-agent-and-judge P04 | 180 | 2 tasks | 1 file |
 | Phase 03-pre-loop-validation-gate P01 | 13 | 3 tasks | 3 files |
+| Phase 04-optimiser P01 | 20 | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -83,6 +84,8 @@ Recent decisions affecting current work:
 - [Phase 03-pre-loop-validation-gate]: Script-mode sys.path shim guarded by __package__ sentinel enables uv run python src/pre_loop_test.py (D-10 PRD compat)
 - [Phase 03-pre-loop-validation-gate]: jitc.preloop logger namespace established for Phase 3 (matches Phase 2 jitc.agent / jitc.judge convention)
 - [Phase 03-pre-loop-validation-gate]: Live gemma4:26b gate: gap=5.0 judgment_gap=5 variance=False — entire gap from judgment category (extraction=8 for both reviews), cleanest possible P1 falsification
+- [Phase 04-optimiser]: run_optimiser signature excludes NDA (structural OPTM-01), 3-retry word-limit loop with sentinel on exhaustion, post-hoc vocab scrub with vocab_warning flag but no retry (P5 detect-don't-prevent)
+- [Phase 04-optimiser]: BANNED_RUBRIC_VOCAB_TOKENS lives in src/models.py as the single source of truth; imported by src/optimiser.py (meta-prompt + scrub) AND tests/test_agent.py (agent prompt gate) so P8 drift is impossible
 
 ### Pending Todos
 
@@ -95,6 +98,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-11T16:09:30.002Z
-Stopped at: Phase 4 context gathered
-Resume file: .planning/phases/04-optimiser/04-CONTEXT.md
+Last session: 2026-04-11T16:53:36.043Z
+Stopped at: Completed 04-01-PLAN.md
+Resume file: None
