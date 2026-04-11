@@ -9,6 +9,7 @@ class Config:
     api_key: str = "ollama"
     temperature: float = 0.0
     num_iterations: int = 5
+    num_ctx: int = 16384
 
     @classmethod
     def from_env(cls) -> "Config":
@@ -40,6 +41,7 @@ class Config:
             api_key=os.getenv("API_KEY", "ollama"),
             temperature=_float("TEMPERATURE", 0.0),
             num_iterations=_int("NUM_ITERATIONS", 5),
+            num_ctx=_int("NUM_CTX", 16384),
         )
 
 

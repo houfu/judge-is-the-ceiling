@@ -14,4 +14,11 @@ target-version = ["py311"]
 [tool.uv]
 dev-dependencies = [
     "black>=26.0",
+    "pytest>=8.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "integration: marks tests that require live Ollama (select with -m integration)",
 ]
