@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, model_validator
 from typing import Literal
 
 
@@ -21,9 +21,35 @@ class IterationResult(BaseModel):
     system_prompt: str
     agent_output: str
     scores: list[RubricScore]
-    total_score: int
-    extraction_score: int
-    judgment_score: int
+    total_score: int = 0
+    extraction_score: int = 0
+    judgment_score: int = 0
+
+    @model_validator(mode="after")
+    def _check_totals(self) -> "IterationResult":
+        extraction, judgment = compute_category_scores(self.scores)
+        total = extraction + judgment
+        # If caller left defaults, fill them in; otherwise enforce consistency.
+        if (
+            self.extraction_score == 0
+            and self.judgment_score == 0
+            and self.total_score == 0
+        ):
+            object.__setattr__(self, "extraction_score", extraction)
+            object.__setattr__(self, "judgment_score", judgment)
+            object.__setattr__(self, "total_score", total)
+            return self
+        if (
+            self.extraction_score,
+            self.judgment_score,
+            self.total_score,
+        ) != (extraction, judgment, total):
+            raise ValueError(
+                f"IterationResult totals inconsistent with scores: "
+                f"got ({self.extraction_score}, {self.judgment_score}, {self.total_score}), "
+                f"expected ({extraction}, {judgment}, {total})"
+            )
+        return self
 
 
 class ExperimentRun(BaseModel):
