@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 3 plans
 Plans:
 - [x] 01-01-PLAN.md — Project skeleton (uv, dependencies, gitignore) + Config dataclass + Pydantic models
-- [ ] 01-02-PLAN.md — Synthetic NDA, rubric JSON, and judge playbook
+- [x] 01-02-PLAN.md — Synthetic NDA, rubric JSON, and judge playbook
 - [ ] 01-03-PLAN.md — Output A (model review) and Output B (flawed review)
 
 ### Phase 2: Agent and Judge
