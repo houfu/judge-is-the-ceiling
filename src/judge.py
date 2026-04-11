@@ -3,8 +3,16 @@
 Design notes:
 - D-04 / P6: every call passes extra_body={"options": {"num_ctx": N}}.
 - D-05: two-message layout (system = stable rules + schema, user = case data).
-- D-07: section headings use top-level `#` so agent output (which uses `##` and
-  below) never collides with our section dividers.
+- D-07: section dividers use distinctive `# === JITC_*_START/END ===` envelope
+  markers rather than plain `# NDA` headings. This prevents collision with
+  top-level `#` headings inside the NDA itself (data/nda.md starts with `# NDA`)
+  and inside any markdown the agent might produce. Note: collision is not the
+  same as prompt injection — a malicious NDA could still include a literal
+  `# === JITC_AGENT_OUTPUT_START ===` string verbatim. The distinctive envelope
+  makes accidental collision effectively impossible and raises the bar for
+  intentional collision. Residual prompt-injection risk is accepted under
+  T-02-J01 (no tool access, Pydantic-validated output, biased scoring is the
+  worst case).
 - D-09: exactly ONE JSON example in the system prompt (avoid multi-shot
   anchoring).
 - D-10: the system prompt explicitly instructs "no preamble, no markdown fences".
@@ -89,18 +97,29 @@ def _build_user_message(
 ) -> str:
     """Assemble the user-role message.
 
-    D-06: markdown-heading delimited. D-07: top-level `#` headings so the
-    agent's `##`-and-below markdown cannot collide with our section dividers.
+    D-06: markdown-heading delimited in fixed order NDA → Agent Output →
+    Rubric → Playbook. D-07: distinctive `# === JITC_*_START/END ===` envelope
+    markers rather than plain top-level headings, because `data/nda.md`
+    itself starts with `# NDA` and any real NDA may contain arbitrary
+    markdown headings. Plain `# NDA` / `# AGENT OUTPUT` dividers would be
+    ambiguous against such input. The JITC envelope strings are unlikely
+    to appear verbatim in a legitimate NDA, making accidental collision
+    effectively impossible. Prompt-injection risk from a crafted NDA is
+    accepted under T-02-J01.
     """
     return (
-        "# NDA\n"
-        f"{nda_text}\n\n"
-        "# AGENT OUTPUT\n"
-        f"{agent_output}\n\n"
-        "# RUBRIC\n"
-        f"{rubric}\n\n"
-        "# PLAYBOOK\n"
+        "# === JITC_NDA_START ===\n"
+        f"{nda_text}\n"
+        "# === JITC_NDA_END ===\n\n"
+        "# === JITC_AGENT_OUTPUT_START ===\n"
+        f"{agent_output}\n"
+        "# === JITC_AGENT_OUTPUT_END ===\n\n"
+        "# === JITC_RUBRIC_START ===\n"
+        f"{rubric}\n"
+        "# === JITC_RUBRIC_END ===\n\n"
+        "# === JITC_PLAYBOOK_START ===\n"
         f"{playbook}\n"
+        "# === JITC_PLAYBOOK_END ===\n"
     )
 
 

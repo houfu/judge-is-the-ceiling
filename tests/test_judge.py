@@ -228,17 +228,29 @@ def test_retry_user_message_bounded():
 
 
 def test_build_user_message_uses_top_level_headings():
-    """D-06/D-07: sections use `# ` (top-level) so agent output's `##` can't collide."""
+    """D-06/D-07: sections use distinctive `# === JITC_*_START/END ===` envelope
+    markers so neither the NDA (which may itself contain top-level `#` headings)
+    nor the agent's markdown can collide with our section dividers."""
     from src.judge import _build_user_message
 
     result = _build_user_message(
         "NDA BODY", "AGENT REVIEW", "RUBRIC JSON", "PLAYBOOK TEXT"
     )
-    assert "# NDA" in result
-    assert "# AGENT OUTPUT" in result
-    assert "# RUBRIC" in result
-    assert "# PLAYBOOK" in result
+    # Distinctive envelope markers for each section.
+    assert "# === JITC_NDA_START ===" in result
+    assert "# === JITC_NDA_END ===" in result
+    assert "# === JITC_AGENT_OUTPUT_START ===" in result
+    assert "# === JITC_AGENT_OUTPUT_END ===" in result
+    assert "# === JITC_RUBRIC_START ===" in result
+    assert "# === JITC_RUBRIC_END ===" in result
+    assert "# === JITC_PLAYBOOK_START ===" in result
+    assert "# === JITC_PLAYBOOK_END ===" in result
+    # Payload bodies preserved verbatim.
     assert "NDA BODY" in result
     assert "AGENT REVIEW" in result
     assert "RUBRIC JSON" in result
     assert "PLAYBOOK TEXT" in result
+    # Fixed ordering (D-06): NDA → Agent Output → Rubric → Playbook.
+    assert result.index("JITC_NDA_START") < result.index("JITC_AGENT_OUTPUT_START")
+    assert result.index("JITC_AGENT_OUTPUT_START") < result.index("JITC_RUBRIC_START")
+    assert result.index("JITC_RUBRIC_START") < result.index("JITC_PLAYBOOK_START")
