@@ -1,5 +1,6 @@
 """Shared test fixtures for Phase 2."""
 
+import copy
 import json
 from types import SimpleNamespace
 
@@ -10,6 +11,11 @@ class _FakeChatCompletions:
     """Captures kwargs from every chat.completions.create call and pops
     a canned string from `responses` to build a minimal OpenAI-compatible
     response object. Tests inspect `.calls` to verify what was sent.
+
+    Kwargs are deep-copied at capture time so that callers (e.g. run_judge)
+    that mutate a persistent `messages` list across retries do not clobber
+    earlier call history. Without this, `client.calls[0]["messages"]` would
+    alias the live list and always appear to be the most recent state.
     """
 
     def __init__(self, responses: list[str]):
@@ -17,7 +23,10 @@ class _FakeChatCompletions:
         self.calls: list[dict] = []
 
     def create(self, **kwargs):
-        self.calls.append(kwargs)
+        # Snapshot kwargs so subsequent in-place mutation by the caller
+        # (e.g. judge retry loop appending to `messages`) does not rewrite
+        # history. deepcopy is fine — messages are small dicts of strings.
+        self.calls.append(copy.deepcopy(kwargs))
         if not self._responses:
             raise AssertionError(
                 "FakeChatCompletions ran out of canned responses; "
