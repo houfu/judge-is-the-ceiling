@@ -33,7 +33,7 @@
 - [ ] **JUDG-01**: Judge takes NDA + agent output + rubric + playbook, returns per-item scores as validated JSON
 - [ ] **JUDG-02**: Pydantic validation with retry up to 3 attempts, sending error details back to model on failure
 - [ ] **JUDG-03**: Markdown fence stripping before JSON parsing
-- [ ] **JUDG-04**: Explicit Ollama num_ctx setting to prevent silent context truncation
+- [x] **JUDG-04**: Explicit Ollama num_ctx setting to prevent silent context truncation
 - [ ] **JUDG-05**: Graceful failure handling — log raw output and continue on retry exhaustion, don't crash
 
 ### Pre-Loop Test
@@ -107,7 +107,7 @@
 | JUDG-01 | Phase 2 | Pending |
 | JUDG-02 | Phase 2 | Pending |
 | JUDG-03 | Phase 2 | Pending |
-| JUDG-04 | Phase 2 | Pending |
+| JUDG-04 | Phase 2 | Complete |
 | JUDG-05 | Phase 2 | Pending |
 | TEST-01 | Phase 3 | Pending |
 | TEST-02 | Phase 3 | Pending |
