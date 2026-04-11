@@ -46,7 +46,12 @@ Plans:
   3. Judge retries up to 3 times on invalid JSON and sends the ValidationError message back to the model on each retry; a deliberately malformed call demonstrates this behaviour
   4. Markdown fences are stripped before Pydantic parsing and num_ctx is set explicitly on every judge API call
   5. If all 3 retries are exhausted the judge logs the raw output and returns a graceful failure result rather than raising an exception
-**Plans**: TBD
+**Plans**: 4 plans
+Plans:
+- [ ] 02-01-PLAN.md — Wave 0 preflight: pytest install, num_ctx on Config, src/llm.py get_client factory, live A1 smoke, tests/ package with FakeClient fixture and Wave 1 stubs
+- [ ] 02-02-PLAN.md — src/agent.py with run_agent and ITERATION_ZERO_SYSTEM_PROMPT (AGNT-01, AGNT-02) with TDD unit tests
+- [ ] 02-03-PLAN.md — src/judge.py with run_judge retry loop, _extract_json, graceful failure (JUDG-01..05) with TDD unit tests
+- [ ] 02-04-PLAN.md — Live Ollama integration smoke tests for agent + judge round-trips, with human verification of judge reasoning quality
 
 ### Phase 3: Pre-Loop Validation Gate
 **Goal**: The judge demonstrably distinguishes the good review from the flawed review, confirming the experiment is worth running
@@ -90,7 +95,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete    | 2026-04-11 |
-| 2. Agent and Judge | 0/TBD | Not started | - |
+| 2. Agent and Judge | 0/4 | Not started | - |
 | 3. Pre-Loop Validation Gate | 0/TBD | Not started | - |
 | 4. Optimiser | 0/TBD | Not started | - |
 | 5. Main Loop | 0/TBD | Not started | - |
