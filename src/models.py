@@ -1,6 +1,42 @@
 from pydantic import BaseModel, Field, field_validator, model_validator
 from typing import Literal
 
+# =========================================================================
+# BANNED_RUBRIC_VOCAB_TOKENS — shared P8 regression source of truth.
+# =========================================================================
+# Imported by:
+#   - src/optimiser.py (post-hoc scrub at D-14, meta-prompt interpolation at D-09)
+#   - tests/test_agent.py (ITERATION_ZERO_SYSTEM_PROMPT regression gate)
+# Changing this list affects both Phase 2's agent-prompt gate AND Phase 4's
+# optimiser scrub. This is intentional — drift between the two would break
+# the P8/P5 detection invariants.
+BANNED_RUBRIC_VOCAB_TOKENS: tuple[str, ...] = (
+    # Phase 2 regression gate tokens (from tests/test_agent.py::_BANNED_TOKENS)
+    "rubric",
+    "playbook",
+    "score",
+    "scoring",
+    "evidence",
+    "extraction",
+    "judgment item",
+    "criteria",
+    "criterion",
+    "evaluate",
+    "evaluation",
+    "item_id",
+    "0/1/2",
+    # Phase 4 optimiser additions per D-09 / D-14 (meta-prompt ban list)
+    "judge",
+    "1a",
+    "1b",
+    "2a",
+    "2b",
+    "3a",
+    "3b",
+    "4a",
+    "4b",
+)
+
 
 class RubricScore(BaseModel):
     item_id: str  # e.g. "1a", "3b"
@@ -24,6 +60,12 @@ class IterationResult(BaseModel):
     total_score: int = 0
     extraction_score: int = 0
     judgment_score: int = 0
+    # Phase 4 D-04 additions — defaulted, passive logging, no validator participation.
+    # Populated by Phase 5's main loop from the OptimiserResult returned by
+    # run_optimiser() at each iteration boundary. Empty defaults for iteration 0.
+    optimiser_feedback_seen: list[str] = []
+    prompt_diff: str = ""
+    prompt_word_count: int = 0
 
     @model_validator(mode="after")
     def _check_totals(self) -> "IterationResult":
@@ -192,3 +234,49 @@ class PreLoopTestResult(BaseModel):
 
 
 ExperimentRun.model_rebuild()
+
+
+class OptimiserResult(BaseModel):
+    """Result of a single run_optimiser call (Phase 4 D-02).
+
+    Carries the rewritten prompt plus all audit fields needed for Phase 5's
+    IterationResult logging and post-hoc analysis (P5/P8/P11 detection).
+
+    failed==True contract (D-11 / JUDG-05 mirror): the optimiser exhausted
+    its 3 retry budget without producing a rewrite within WORD_LIMIT. When
+    failed==True:
+      - new_system_prompt is the INPUT system_prompt, byte-identical
+      - prompt_diff is ""
+      - prompt_word_count == old_word_count
+      - retry_count == 3
+    Phase 5 callers can safely do `current = result.new_system_prompt`
+    regardless of failed state — the old prompt is preserved.
+    """
+
+    new_system_prompt: str
+    feedback_seen: list[str]
+    prompt_diff: str
+    prompt_word_count: int
+    old_word_count: int
+    vocab_warning: bool = False
+    retry_count: int = 0
+    failed: bool = False
+
+    @model_validator(mode="after")
+    def _check_structural_invariants(self) -> "OptimiserResult":
+        # D-03: word count must match the stored prompt.
+        actual_words = len(self.new_system_prompt.split())
+        if self.prompt_word_count != actual_words:
+            raise ValueError(
+                f"OptimiserResult.prompt_word_count={self.prompt_word_count} "
+                f"does not match len(new_system_prompt.split())={actual_words}"
+            )
+        if self.old_word_count < 0:
+            raise ValueError(
+                f"OptimiserResult.old_word_count must be >= 0; got {self.old_word_count}"
+            )
+        if not (0 <= self.retry_count <= 3):
+            raise ValueError(
+                f"OptimiserResult.retry_count must be in [0, 3]; got {self.retry_count}"
+            )
+        return self

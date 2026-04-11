@@ -6,23 +6,7 @@ AGNT-02: ITERATION_ZERO_SYSTEM_PROMPT contains no rubric/playbook/evaluation voc
 """
 
 from src.config import config
-
-# P8 banned-token list (cited in RESEARCH.md §Discretion Resolution #6 and §P8 mitigation).
-_BANNED_TOKENS = [
-    "rubric",
-    "playbook",
-    "score",
-    "scoring",
-    "evidence",
-    "extraction",
-    "judgment item",
-    "criteria",
-    "criterion",
-    "evaluate",
-    "evaluation",
-    "item_id",
-    "0/1/2",
-]
+from src.models import BANNED_RUBRIC_VOCAB_TOKENS as _BANNED_TOKENS
 
 
 def test_run_agent_returns_content(fake_client):
