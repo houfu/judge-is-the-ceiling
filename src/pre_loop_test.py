@@ -22,12 +22,21 @@ P10: the 2.0-point threshold is load-bearing and intentionally hard-coded
 """
 
 import logging
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from src.config import config
-from src.judge import run_judge
-from src.models import IterationResult, PreLoopTestResult
+# D-10 PRD compatibility: allow `uv run python src/pre_loop_test.py` to work.
+# When invoked as a script (not via `python -m src.pre_loop_test` or pytest),
+# `src` is not on sys.path — prepend the repo root so the `from src.X import`
+# statements below resolve. This is a no-op when imported normally (pytest,
+# Phase 4/5 library consumers) because the repo root is already on sys.path.
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from src.config import config  # noqa: E402
+from src.judge import run_judge  # noqa: E402
+from src.models import IterationResult, PreLoopTestResult  # noqa: E402
 
 logger = logging.getLogger("jitc.preloop")
 
