@@ -3,3 +3,17 @@ results/*
 __pycache__/
 *.pyc
 .venv/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Python caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# OS
+.DS_Store
