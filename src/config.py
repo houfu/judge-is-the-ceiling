@@ -20,9 +20,7 @@ class Config:
             try:
                 return float(raw)
             except ValueError as exc:
-                raise ValueError(
-                    f"Invalid {key}={raw!r}; expected float"
-                ) from exc
+                raise ValueError(f"Invalid {key}={raw!r}; expected float") from exc
 
         def _int(key: str, default: int) -> int:
             raw = os.getenv(key)
@@ -31,9 +29,7 @@ class Config:
             try:
                 return int(raw)
             except ValueError as exc:
-                raise ValueError(
-                    f"Invalid {key}={raw!r}; expected int"
-                ) from exc
+                raise ValueError(f"Invalid {key}={raw!r}; expected int") from exc
 
         return cls(
             model=os.getenv("MODEL", "qwen2.5:32b"),
