@@ -62,7 +62,9 @@ Plans:
   2. The good review (output_a) scores at least 2.0 points higher than the flawed review (output_b) on average across all 8 rubric items
   3. Score breakdown in results/pre_loop_test.json shows the good review outscoring the flawed review on judgment items specifically (the thesis-critical signal)
   4. A go/no-go decision is documented (in results/pre_loop_test.json or console output) before the loop is built
-**Plans**: TBD
+**Plans**: 1 plan
+Plans:
+- [x] 03-01-PLAN.md — PreLoopTestResult model + src/pre_loop_test.py library/__main__ + live integration test asserting decision=go, gap>=2.0, judgment_gap>0
 
 ### Phase 4: Optimiser
 **Goal**: The optimiser can rewrite an agent system prompt based solely on judge feedback, without access to the NDA

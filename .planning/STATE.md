@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Phase 2 execution finished
-stopped_at: Phase 3 context gathered
-last_updated: "2026-04-11T11:42:01.917Z"
+status: verifying
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-04-11T12:37:29.947Z"
 last_activity: 2026-04-11
 progress:
   total_phases: 5
-  completed_phases: 2
-  total_plans: 7
-  completed_plans: 7
+  completed_phases: 3
+  total_plans: 8
+  completed_plans: 8
   percent: 100
 ---
 
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-11)
 
 **Core value:** Produce a clean experiment run demonstrating whether the optimisation loop converges on extraction scores while plateauing on judgment scores
-**Current focus:** Phase 2 — Agent and Judge
+**Current focus:** Phase 3 — Pre-Loop Validation Gate
 
 ## Current Position
 
-Phase: 2 (Agent and Judge) — ALL PLANS COMPLETE, awaiting phase verification
-Plan: 4 of 4 — COMPLETE
-Status: Phase 2 execution finished
+Phase: 3 (Pre-Loop Validation Gate) — EXECUTING
+Plan: 1 of 1
+Status: Phase complete — ready for verification
 Last activity: 2026-04-11
 
 Progress: [██████████] 100%
@@ -56,6 +56,7 @@ Progress: [██████████] 100%
 | Phase 02-agent-and-judge P02 | 95 | 2 tasks | 2 files |
 | Phase 02-agent-and-judge P03 | 4 | 3 tasks | 4 files |
 | Phase 02-agent-and-judge P04 | 180 | 2 tasks | 1 file |
+| Phase 03-pre-loop-validation-gate P01 | 13 | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -77,6 +78,11 @@ Recent decisions affecting current work:
 - [Phase 02-agent-and-judge]: FakeChatCompletions.create deep-copies kwargs at capture so multi-call retry tests can inspect per-call messages history without aliasing the caller's mutable list (Rule 1 deviation)
 - [Phase 02-agent-and-judge P04]: Live Ollama integration verified end-to-end against gemma4:26b — run_agent + run_judge round-trip returned 8/8 rubric scores with specific, NDA-citing reasoning strings (126s pytest run)
 - [Phase 02-agent-and-judge P04]: MODEL=gemma4:26b confirmed as the working local override; .env file created (gitignored) documenting MODEL/BASE_URL/API_KEY/NUM_CTX for developers — src/config.py default qwen2.5:32b left unchanged pending a user decision on canonical experiment model
+- [Phase 03-pre-loop-validation-gate]: PreLoopTestResult schema with validator-owns-arithmetic pattern and probe-construction for rationale (D-01, Resolution #1)
+- [Phase 03-pre-loop-validation-gate]: Threshold hard-coded at 2.0 on the Pydantic model, no env override (P10 mitigation)
+- [Phase 03-pre-loop-validation-gate]: Script-mode sys.path shim guarded by __package__ sentinel enables uv run python src/pre_loop_test.py (D-10 PRD compat)
+- [Phase 03-pre-loop-validation-gate]: jitc.preloop logger namespace established for Phase 3 (matches Phase 2 jitc.agent / jitc.judge convention)
+- [Phase 03-pre-loop-validation-gate]: Live gemma4:26b gate: gap=5.0 judgment_gap=5 variance=False — entire gap from judgment category (extraction=8 for both reviews), cleanest possible P1 falsification
 
 ### Pending Todos
 
@@ -89,6 +95,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-11T11:42:01.915Z
-Stopped at: Phase 3 context gathered
-Resume file: .planning/phases/03-pre-loop-validation-gate/03-CONTEXT.md
+Last session: 2026-04-11T12:37:20.312Z
+Stopped at: Completed 03-01-PLAN.md
+Resume file: None

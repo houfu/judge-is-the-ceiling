@@ -38,8 +38,8 @@
 
 ### Pre-Loop Test
 
-- [ ] **TEST-01**: Run Output A and Output B through judge with same rubric and playbook
-- [ ] **TEST-02**: Results logged in same JSON schema as loop iterations for direct comparison
+- [x] **TEST-01**: Run Output A and Output B through judge with same rubric and playbook
+- [x] **TEST-02**: Results logged in same JSON schema as loop iterations for direct comparison
 
 ### Optimiser
 
@@ -109,8 +109,8 @@
 | JUDG-03 | Phase 2 | Complete |
 | JUDG-04 | Phase 2 | Complete |
 | JUDG-05 | Phase 2 | Complete |
-| TEST-01 | Phase 3 | Pending |
-| TEST-02 | Phase 3 | Pending |
+| TEST-01 | Phase 3 | Complete |
+| TEST-02 | Phase 3 | Complete |
 | OPTM-01 | Phase 4 | Pending |
 | OPTM-02 | Phase 4 | Pending |
 | OPTM-03 | Phase 4 | Pending |
