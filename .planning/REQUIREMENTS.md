@@ -25,8 +25,8 @@
 
 ### Agent
 
-- [ ] **AGNT-01**: Agent takes system prompt + NDA text, returns structured NDA review via OpenAI-compatible API
-- [ ] **AGNT-02**: Agent system prompt does not reference rubric, playbook, or evaluation criteria
+- [x] **AGNT-01**: Agent takes system prompt + NDA text, returns structured NDA review via OpenAI-compatible API
+- [x] **AGNT-02**: Agent system prompt does not reference rubric, playbook, or evaluation criteria
 
 ### Judge
 
@@ -102,8 +102,8 @@
 | CONF-02 | Phase 1 | Pending |
 | SETP-01 | Phase 1 | Pending |
 | SETP-02 | Phase 1 | Pending |
-| AGNT-01 | Phase 2 | Pending |
-| AGNT-02 | Phase 2 | Pending |
+| AGNT-01 | Phase 2 | Complete |
+| AGNT-02 | Phase 2 | Complete |
 | JUDG-01 | Phase 2 | Pending |
 | JUDG-02 | Phase 2 | Pending |
 | JUDG-03 | Phase 2 | Pending |

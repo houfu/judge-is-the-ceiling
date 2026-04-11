@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-01-PLAN.md
-last_updated: "2026-04-11T06:56:56.495Z"
+stopped_at: Completed 02-02-PLAN.md
+last_updated: "2026-04-11T07:01:59.207Z"
 last_activity: 2026-04-11
 progress:
   total_phases: 5
   completed_phases: 1
   total_plans: 7
-  completed_plans: 4
-  percent: 57
+  completed_plans: 5
+  percent: 71
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-11)
 ## Current Position
 
 Phase: 2 (Agent and Judge) — EXECUTING
-Plan: 2 of 4
+Plan: 3 of 4
 Status: Ready to execute
 Last activity: 2026-04-11
 
@@ -53,6 +53,7 @@ Progress: [░░░░░░░░░░] 0%
 
 *Updated after each plan completion*
 | Phase 02-agent-and-judge P01 | 162 | 3 tasks | 10 files |
+| Phase 02-agent-and-judge P02 | 95 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -66,6 +67,8 @@ Recent decisions affecting current work:
 - Temperature = 0 on all LLM calls for reproducibility
 - [Phase 02-agent-and-judge]: num_ctx default locked at 16384 (D-02) with NUM_CTX env var override (D-03)
 - [Phase 02-agent-and-judge]: Assumption A1 verified: extra_body={'options':{'num_ctx':N}} is honoured by Ollama (qwen3.5:27b smoke returned 'pong')
+- [Phase 02-agent-and-judge]: ITERATION_ZERO_SYSTEM_PROMPT copied verbatim from prd.md §3.4 with P8 banned-token regression gate in tests/test_agent.py (13 tokens)
+- [Phase 02-agent-and-judge]: run_agent uses temperature=config.temperature (not hard-coded) and returns message.content or '' to absorb Ollama None-content quirk
 
 ### Pending Todos
 
@@ -78,6 +81,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-11T06:56:50.879Z
-Stopped at: Completed 02-01-PLAN.md
+Last session: 2026-04-11T07:01:52.656Z
+Stopped at: Completed 02-02-PLAN.md
 Resume file: None

@@ -49,7 +49,7 @@ Plans:
 **Plans**: 4 plans
 Plans:
 - [x] 02-01-PLAN.md — Wave 0 preflight: pytest install, num_ctx on Config, src/llm.py get_client factory, live A1 smoke, tests/ package with FakeClient fixture and Wave 1 stubs
-- [ ] 02-02-PLAN.md — src/agent.py with run_agent and ITERATION_ZERO_SYSTEM_PROMPT (AGNT-01, AGNT-02) with TDD unit tests
+- [x] 02-02-PLAN.md — src/agent.py with run_agent and ITERATION_ZERO_SYSTEM_PROMPT (AGNT-01, AGNT-02) with TDD unit tests
 - [ ] 02-03-PLAN.md — src/judge.py with run_judge retry loop, _extract_json, graceful failure (JUDG-01..05) with TDD unit tests
 - [ ] 02-04-PLAN.md — Live Ollama integration smoke tests for agent + judge round-trips, with human verification of judge reasoning quality
 
