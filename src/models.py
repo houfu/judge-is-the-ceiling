@@ -1,4 +1,4 @@
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 from typing import Literal
 
 
@@ -95,7 +95,14 @@ class PreLoopTestResult(BaseModel):
 
     output_a_runs: list[IterationResult]
     output_b_runs: list[IterationResult]
-    threshold: float = 2.0  # P10 mitigation — hard-coded
+    threshold: float = Field(
+        default=2.0,
+        description=(
+            "P10 mitigation — load-bearing gate threshold, hard-coded at 2.0. "
+            "Enforced by _reject_threshold_override below: any construction-time "
+            "override raises ValidationError. Weakening the bar defeats the gate."
+        ),
+    )
     rationale: str  # hand-written per resolution #4
     model: str
     temperature: float
@@ -107,6 +114,22 @@ class PreLoopTestResult(BaseModel):
     passed: bool = False
     decision: Literal["go", "no-go"] = "no-go"
     variance_warning: bool = False
+
+    @field_validator("threshold")
+    @classmethod
+    def _reject_threshold_override(cls, v: float) -> float:
+        # P10 mitigation: the 2.0-point bar is load-bearing and must be
+        # structurally unforgeable. Pydantic's per-field `Field(frozen=True)`
+        # only blocks post-construction mutation, not construction-time
+        # overrides, so we reject non-2.0 values here. This makes the
+        # docstring invariant ("hard-coded at 2.0") enforceable rather than
+        # aspirational.
+        if v != 2.0:
+            raise ValueError(
+                f"PreLoopTestResult.threshold is load-bearing (P10) and must "
+                f"be 2.0; got {v}. Weakening the bar defeats the gate."
+            )
+        return v
 
     @model_validator(mode="after")
     def _compute_gate(self) -> "PreLoopTestResult":
