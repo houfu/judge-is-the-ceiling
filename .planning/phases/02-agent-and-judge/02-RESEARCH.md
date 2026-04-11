@@ -969,7 +969,7 @@ markers = [
 All 7 recommendations below were adopted during planning. Plans 02-01..02-04 implement them directly. This section is retained for traceability.
 
 1. **Wave 0 Ollama reachability check:** Should Phase 2 PLAN.md assume Ollama is already running with `qwen2.5:32b` pulled, or should Wave 0 include a `ollama serve` / `ollama pull qwen2.5:32b` step? Recommendation: add a Wave 0 "preflight" task that runs `curl -s http://localhost:11434/api/tags` and `ollama list` and aborts the phase with a clear message if either fails. Unit tests can still run without Ollama; only the integration smoke and the A1 verification need it.
-**RESOLVED:** Adopted recommendation — implemented in Plan 02-01 Task 2 (Wave 0 preflight lives in `scripts/preflight.py`, invoked before integration runs).
+**RESOLVED:** Adopted recommendation — implemented in Plan 02-01 Task 2 (Wave 0 preflight is an inline `curl http://localhost:11434/api/tags` check inside the smoke action; aborts the phase if Ollama is unreachable).
 
 2. **Rubric passing convention:** CONTEXT.md §Integration Points says "raw text (read from `data/rubric.json`) OR list of dicts — planner's choice". The skeleton I provided takes `rubric: str` (raw JSON text) for simplicity. If the planner wants `run_judge` to accept `list[dict]` instead and serialise internally, the signature changes but D-08 ("paste raw JSON verbatim") is satisfied either way. **Recommendation:** raw `str`. Caller does `Path("data/rubric.json").read_text()`. Zero ambiguity, and keeps `run_judge` pure.
 **RESOLVED:** Adopted recommendation — implemented in Plan 02-03 Task 2 (`run_judge(nda_text, agent_output, rubric: str, playbook)` takes raw JSON string; caller passes `Path('data/rubric.json').read_text()`).
