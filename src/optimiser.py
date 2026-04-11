@@ -104,16 +104,23 @@ def _build_retry_message(actual_words: int) -> str:
 
 
 def _compute_prompt_diff(old: str, new: str) -> str:
-    """D-13: stdlib unified diff, single joined string."""
+    """D-13: stdlib unified diff, single joined string.
+
+    Uses splitlines() (no keepends) with lineterm="" and "\n".join so that
+    single-line inputs without trailing newlines still produce a readable
+    multi-line unified diff. With keepends=True + lineterm="", difflib
+    concatenates all headers and body lines into a single run (no inter-line
+    separators), which breaks grep / splitlines-based consumers downstream.
+    """
     diff_lines = difflib.unified_diff(
-        old.splitlines(keepends=True),
-        new.splitlines(keepends=True),
+        old.splitlines(),
+        new.splitlines(),
         fromfile="old_system_prompt",
         tofile="new_system_prompt",
         lineterm="",
         n=3,
     )
-    return "".join(diff_lines)
+    return "\n".join(diff_lines)
 
 
 def _check_banned_vocab(prompt: str) -> list[str]:
