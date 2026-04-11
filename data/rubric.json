@@ -1,0 +1,58 @@
+[
+  {
+    "item_id": "1a",
+    "item_type": "extraction",
+    "issue_number": 1,
+    "question": "Did the review identify the 7-year confidentiality period?",
+    "max_score": 2
+  },
+  {
+    "item_id": "1b",
+    "item_type": "judgment",
+    "issue_number": 1,
+    "question": "Did the review flag the 7-year duration as unusual relative to market norms?",
+    "max_score": 2
+  },
+  {
+    "item_id": "2a",
+    "item_type": "extraction",
+    "issue_number": 2,
+    "question": "Did the review locate the definition of Confidential Information?",
+    "max_score": 2
+  },
+  {
+    "item_id": "2b",
+    "item_type": "judgment",
+    "issue_number": 2,
+    "question": "Did the review assess the breadth of the definition as a negotiation risk?",
+    "max_score": 2
+  },
+  {
+    "item_id": "3a",
+    "item_type": "extraction",
+    "issue_number": 3,
+    "question": "Did the review identify the non-solicitation obligation?",
+    "max_score": 2
+  },
+  {
+    "item_id": "3b",
+    "item_type": "judgment",
+    "issue_number": 3,
+    "question": "Did the review flag the placement of the non-solicitation in remedies as unusual and the obligation as beyond NDA scope?",
+    "max_score": 2
+  },
+  {
+    "item_id": "4a",
+    "item_type": "extraction",
+    "issue_number": 4,
+    "question": "Did the review identify the independently-developed-information exception?",
+    "max_score": 2
+  },
+  {
+    "item_id": "4b",
+    "item_type": "judgment",
+    "issue_number": 4,
+    "question": "Did the review recognise that the additional requirements make the exception functionally unusable?",
+    "max_score": 2
+  }
+]
