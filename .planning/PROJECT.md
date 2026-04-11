@@ -60,6 +60,7 @@ Produce a clean experiment run that demonstrates whether the optimisation loop c
 | Vague playbook for judgment items | Realistic; produces the predicted failure mode the thesis tests | -- Pending |
 | Loop only, no Streamlit | Focus on core experiment; viz is a separate task | -- Pending |
 | Claude drafts legal content, author edits | Legal accuracy requires human judgment; Claude provides structure | -- Pending |
+| Canonical experiment model is `gemma4:26b` | Installed on local host; verified working end-to-end in Phase 2 live integration smoke (run_agent + run_judge returning 8/8 scored rubric items); avoids ~19 GB pull of qwen2.5:32b | Confirmed 2026-04-11 post-Phase-2 |
 
 ## Evolution
 

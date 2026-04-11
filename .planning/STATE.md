@@ -80,12 +80,12 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-- User decision required before Phase 3: confirm canonical experiment model (default qwen2.5:32b, or change to gemma4:26b?) — Phase 3's pre-loop go/no-go gate should run against whichever model Phase 5's main loop will use
+None yet.
 
 ### Blockers/Concerns
 
 - Phase 3 requires a researcher decision before running: confirm the minimum acceptable score gap threshold (suggested >=2.0 points) and document rationale
-- Default MODEL qwen2.5:32b not pulled on host — worked around via MODEL=gemma4:26b shell env for all Phase 2 live tests; same override needed for Phase 3/5 live runs until the project default is reconciled with what's installed
+- **RESOLVED 2026-04-11:** Canonical experiment model changed from `qwen2.5:32b` to `gemma4:26b` (Option B) — src/config.py default updated, PROJECT.md Key Decisions table updated. Live tests in Phase 3+ run against the default model with no env override needed.
 
 ## Session Continuity
 

@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Config:
-    model: str = "qwen2.5:32b"
+    model: str = "gemma4:26b"
     base_url: str = "http://localhost:11434/v1"
     api_key: str = "ollama"
     temperature: float = 0.0
@@ -32,7 +32,7 @@ class Config:
                 raise ValueError(f"Invalid {key}={raw!r}; expected int") from exc
 
         return cls(
-            model=os.getenv("MODEL", "qwen2.5:32b"),
+            model=os.getenv("MODEL", "gemma4:26b"),
             base_url=os.getenv("BASE_URL", "http://localhost:11434/v1"),
             api_key=os.getenv("API_KEY", "ollama"),
             temperature=_float("TEMPERATURE", 0.0),
