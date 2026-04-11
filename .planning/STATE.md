@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-02-PLAN.md
-last_updated: "2026-04-11T07:01:59.207Z"
+stopped_at: Completed 02-03-PLAN.md
+last_updated: "2026-04-11T07:09:33.330Z"
 last_activity: 2026-04-11
 progress:
   total_phases: 5
   completed_phases: 1
   total_plans: 7
-  completed_plans: 5
-  percent: 71
+  completed_plans: 6
+  percent: 86
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-11)
 ## Current Position
 
 Phase: 2 (Agent and Judge) — EXECUTING
-Plan: 3 of 4
+Plan: 4 of 4
 Status: Ready to execute
 Last activity: 2026-04-11
 
@@ -54,6 +54,7 @@ Progress: [░░░░░░░░░░] 0%
 *Updated after each plan completion*
 | Phase 02-agent-and-judge P01 | 162 | 3 tasks | 10 files |
 | Phase 02-agent-and-judge P02 | 95 | 2 tasks | 2 files |
+| Phase 02-agent-and-judge P03 | 4 | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -69,6 +70,10 @@ Recent decisions affecting current work:
 - [Phase 02-agent-and-judge]: Assumption A1 verified: extra_body={'options':{'num_ctx':N}} is honoured by Ollama (qwen3.5:27b smoke returned 'pong')
 - [Phase 02-agent-and-judge]: ITERATION_ZERO_SYSTEM_PROMPT copied verbatim from prd.md §3.4 with P8 banned-token regression gate in tests/test_agent.py (13 tokens)
 - [Phase 02-agent-and-judge]: run_agent uses temperature=config.temperature (not hard-coded) and returns message.content or '' to absorb Ollama None-content quirk
+- [Phase 02-agent-and-judge]: run_judge graceful failure returns JudgeResult(scores=[]) sentinel — callers detect with 'if not result.scores:' (JUDG-05)
+- [Phase 02-agent-and-judge]: _extract_json uses single outermost-brace DOTALL regex (re.DOTALL) — handles json fences, prose preambles, and nested objects in one pass instead of separate fence-stripping step (P14)
+- [Phase 02-agent-and-judge]: Judge retry loop uses single 'except ValidationError' — Pydantic v2 model_validate_json raises this for both JSON-decode and schema failures (P12), no JSONDecodeError catch needed
+- [Phase 02-agent-and-judge]: FakeChatCompletions.create deep-copies kwargs at capture so multi-call retry tests can inspect per-call messages history without aliasing the caller's mutable list (Rule 1 deviation)
 
 ### Pending Todos
 
@@ -81,6 +86,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-11T07:01:52.656Z
-Stopped at: Completed 02-02-PLAN.md
+Last session: 2026-04-11T07:09:33.328Z
+Stopped at: Completed 02-03-PLAN.md
 Resume file: None
