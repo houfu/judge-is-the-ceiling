@@ -25,7 +25,6 @@ from src.models import (
     RubricScore,
 )
 
-
 # -------------------------------------------------------------------------
 # Helpers for building PreLoopTestResult fixtures
 # -------------------------------------------------------------------------
@@ -487,6 +486,6 @@ def test_vocab_warning_logged(fake_client, monkeypatch, tmp_path, caplog):
         loop.run_experiment()
 
     warnings = [r for r in caplog.records if r.levelno == logging.WARNING]
-    assert any("vocab_warning" in r.getMessage().lower() for r in warnings), (
-        f"Expected 'vocab_warning' in warning log. Got: {[r.getMessage() for r in warnings]}"
-    )
+    assert any(
+        "vocab_warning" in r.getMessage().lower() for r in warnings
+    ), f"Expected 'vocab_warning' in warning log. Got: {[r.getMessage() for r in warnings]}"
