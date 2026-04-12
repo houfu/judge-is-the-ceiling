@@ -89,7 +89,9 @@ Plans:
   3. The run metadata envelope in results/run_001.json includes model name (with quantisation tag), Ollama version, temperature, and timestamp
   4. If a single iteration fails (e.g., judge retry exhaustion) the error is logged and the loop continues to the next iteration without crashing
   5. results/run_001.json is written via try/finally so a partial run is preserved even if the process is interrupted
-**Plans**: TBD
+**Plans**: 1 plan
+Plans:
+- [ ] 05-01-PLAN.md — src/loop.py (run_experiment + _compute_deltas + _get_ollama_version + __main__) + tests/test_loop.py (10 FakeClient unit tests) + live experiment verification
 
 ## Progress
 
@@ -102,4 +104,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 2. Agent and Judge | 4/4 | Complete   | 2026-04-11 |
 | 3. Pre-Loop Validation Gate | 0/TBD | Not started | - |
 | 4. Optimiser | 0/1 | Planned | - |
-| 5. Main Loop | 0/TBD | Not started | - |
+| 5. Main Loop | 0/1 | Planned | - |
