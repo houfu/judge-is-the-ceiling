@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Agent and Judge** - Working run_agent() and run_judge() with retry loop, verified against schemas (completed 2026-04-11)
 - [ ] **Phase 3: Pre-Loop Validation Gate** - Judge calibration test producing a go/no-go decision before proceeding
 - [ ] **Phase 4: Optimiser** - Working run_optimiser() with feedback pass-through and prompt length enforcement
-- [ ] **Phase 5: Main Loop** - Complete experiment run producing structured JSON results
+- [x] **Phase 5: Main Loop** - Complete experiment run producing structured JSON results (completed 2026-04-12)
 
 ## Phase Details
 
@@ -91,7 +91,7 @@ Plans:
   5. results/run_001.json is written via try/finally so a partial run is preserved even if the process is interrupted
 **Plans**: 1 plan
 Plans:
-- [ ] 05-01-PLAN.md — src/loop.py (run_experiment + _compute_deltas + _get_ollama_version + __main__) + tests/test_loop.py (10 FakeClient unit tests) + live experiment verification
+- [x] 05-01-PLAN.md — src/loop.py (run_experiment + _compute_deltas + _get_ollama_version + __main__) + tests/test_loop.py (10 FakeClient unit tests) + live experiment verification
 
 ## Progress
 
@@ -104,4 +104,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 2. Agent and Judge | 4/4 | Complete   | 2026-04-11 |
 | 3. Pre-Loop Validation Gate | 0/TBD | Not started | - |
 | 4. Optimiser | 0/1 | Planned | - |
-| 5. Main Loop | 0/1 | Planned | - |
+| 5. Main Loop | 1/1 | Complete   | 2026-04-12 |

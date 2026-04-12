@@ -49,10 +49,10 @@
 
 ### Loop
 
-- [ ] **LOOP-01**: Main loop ties agent -> judge -> log -> optimiser for N iterations (default 5)
-- [ ] **LOOP-02**: Per-iteration results written to structured JSON with iteration counter
-- [ ] **LOOP-03**: Run metadata envelope (model, temperature, timestamp, iteration count, Ollama version)
-- [ ] **LOOP-04**: Resilient to individual iteration failures — log error and continue
+- [x] **LOOP-01**: Main loop ties agent -> judge -> log -> optimiser for N iterations (default 5)
+- [x] **LOOP-02**: Per-iteration results written to structured JSON with iteration counter
+- [x] **LOOP-03**: Run metadata envelope (model, temperature, timestamp, iteration count, Ollama version)
+- [x] **LOOP-04**: Resilient to individual iteration failures — log error and continue
 
 ### Project Setup
 
@@ -114,10 +114,10 @@
 | OPTM-01 | Phase 4 | Complete |
 | OPTM-02 | Phase 4 | Complete |
 | OPTM-03 | Phase 4 | Complete |
-| LOOP-01 | Phase 5 | Pending |
-| LOOP-02 | Phase 5 | Pending |
-| LOOP-03 | Phase 5 | Pending |
-| LOOP-04 | Phase 5 | Pending |
+| LOOP-01 | Phase 5 | Complete |
+| LOOP-02 | Phase 5 | Complete |
+| LOOP-03 | Phase 5 | Complete |
+| LOOP-04 | Phase 5 | Complete |
 
 **Coverage:**
 - v1 requirements: 27 total

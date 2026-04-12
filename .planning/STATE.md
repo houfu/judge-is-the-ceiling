@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Phase 5 context gathered
-last_updated: "2026-04-12T04:00:28.188Z"
-last_activity: 2026-04-12 -- Phase 5 planning complete
+status: verifying
+stopped_at: "Phase 05-01: Tasks 1-2 complete. Awaiting human verify checkpoint (Task 3: live Ollama run)"
+last_updated: "2026-04-12T04:13:34.117Z"
+last_activity: 2026-04-12
 progress:
   total_phases: 5
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 10
-  completed_plans: 9
-  percent: 90
+  completed_plans: 10
+  percent: 100
 ---
 
 # Project State
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-11)
 
 **Core value:** Produce a clean experiment run demonstrating whether the optimisation loop converges on extraction scores while plateauing on judgment scores
-**Current focus:** Phase 4 — Optimiser
+**Current focus:** Phase 05 — Main Loop
 
 ## Current Position
 
-Phase: 4 (Optimiser) — EXECUTING
+Phase: 05 (Main Loop) — EXECUTING
 Plan: 1 of 1
-Status: Ready to execute
-Last activity: 2026-04-12 -- Phase 5 planning complete
+Status: Phase complete — ready for verification
+Last activity: 2026-04-12
 
 Progress: [██████████] 100%
 
@@ -58,6 +58,7 @@ Progress: [██████████] 100%
 | Phase 02-agent-and-judge P04 | 180 | 2 tasks | 1 file |
 | Phase 03-pre-loop-validation-gate P01 | 13 | 3 tasks | 3 files |
 | Phase 04-optimiser P01 | 20 | 3 tasks | 4 files |
+| Phase 05-main-loop P01 | 11 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -86,6 +87,9 @@ Recent decisions affecting current work:
 - [Phase 03-pre-loop-validation-gate]: Live gemma4:26b gate: gap=5.0 judgment_gap=5 variance=False — entire gap from judgment category (extraction=8 for both reviews), cleanest possible P1 falsification
 - [Phase 04-optimiser]: run_optimiser signature excludes NDA (structural OPTM-01), 3-retry word-limit loop with sentinel on exhaustion, post-hoc vocab scrub with vocab_warning flag but no retry (P5 detect-don't-prevent)
 - [Phase 04-optimiser]: BANNED_RUBRIC_VOCAB_TOKENS lives in src/models.py as the single source of truth; imported by src/optimiser.py (meta-prompt + scrub) AND tests/test_agent.py (agent prompt gate) so P8 drift is impossible
+- [Phase 05-main-loop]: Optimiser not called after last iteration (D-12): clean iteration boundary, no wasted LLM call
+- [Phase 05-main-loop]: Deltas computed at write time via _compute_deltas, not stored in IterationResult: avoids Pydantic schema changes
+- [Phase 05-main-loop]: model_dump() + dict injection pattern for top-level deltas key in results JSON
 
 ### Pending Todos
 
@@ -98,6 +102,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-12T03:47:56.732Z
-Stopped at: Phase 5 context gathered
-Resume file: .planning/phases/05-main-loop/05-CONTEXT.md
+Last session: 2026-04-12T04:13:34.115Z
+Stopped at: Phase 05-01: Tasks 1-2 complete. Awaiting human verify checkpoint (Task 3: live Ollama run)
+Resume file: None
