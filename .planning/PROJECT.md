@@ -16,15 +16,16 @@ Produce a clean experiment run that demonstrates whether the optimisation loop c
 - ✓ 8-item rubric with extraction/judgment pairs per issue — Phase 1
 - ✓ Playbook with precise extraction guidance and deliberately vague judgment guidance — Phase 1
 - ✓ Configurable model, base URL, temperature, iteration count — Phase 1
+- ✓ Agent component: system prompt + NDA -> structured review via OpenAI-compatible API — Phase 2
+- ✓ Judge component: NDA + agent output + rubric + playbook -> scored JSON with Pydantic validation and retry — Phase 2
+- ✓ Pre-loop judge test running two pre-written reviews (good + flawed) through the judge — Phase 3
+- ✓ Optimiser component: current prompt + judge feedback (no NDA) -> rewritten system prompt — Phase 4
+- ✓ Main loop tying agent -> judge -> log -> optimiser for N iterations — Phase 5
+- ✓ All results written as structured JSON to results/ directory — Phase 5
 
 ### Active
 
-- [ ] Agent component: system prompt + NDA -> structured review via OpenAI-compatible API
-- [ ] Judge component: NDA + agent output + rubric + playbook -> scored JSON with Pydantic validation and retry
-- [ ] Optimiser component: current prompt + judge feedback (no NDA) -> rewritten system prompt
-- [ ] Main loop tying agent -> judge -> log -> optimiser for N iterations
-- [ ] Pre-loop judge test running two pre-written reviews (good + flawed) through the judge
-- [ ] All results written as structured JSON to results/ directory
+None — all v1 requirements validated. Ready for experiment run.
 
 ### Out of Scope
 
@@ -80,4 +81,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-11 after Phase 1 completion*
+*Last updated: 2026-04-12 after Phase 5 completion — all v1 phases complete*
